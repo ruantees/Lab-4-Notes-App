@@ -10,6 +10,7 @@
         android:layout_height="50dp" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvNotes"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -26,14 +27,18 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginHorizontal="30dp"
-            android:text="New Note"/>
+            android:padding="5dp"
+            android:text="New Note"
+            android:textSize="18sp" />
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginHorizontal="30dp"
-            android:text="Delete Note"/>
+            android:padding="5dp"
+            android:text="Delete Note"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
