@@ -1,8 +1,10 @@
 package com.example.notes
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -13,10 +15,36 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val rvContacts = findViewById<View>(R.id.rvNotes) as RecyclerView
-        notes = Note.createNotesList(20)
+        val dbHelper = DatabaseHelper.getInstance(this)
+        notes = dbHelper.getAllNotes()
 
         val adapter = NotesAdapter(notes)
         rvContacts.adapter = adapter
         rvContacts.layoutManager = LinearLayoutManager(this)
+
+        val newNoteOpener = findViewById<Button>(R.id.new_note)
+        newNoteOpener.setOnClickListener {
+            val intent = Intent(this, CreateNoteActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        setContentView(R.layout.activity_main)
+
+        val rvContacts = findViewById<View>(R.id.rvNotes) as RecyclerView
+        val dbHelper = DatabaseHelper.getInstance(this)
+        notes = dbHelper.getAllNotes()
+
+        val adapter = NotesAdapter(notes)
+        rvContacts.adapter = adapter
+        rvContacts.layoutManager = LinearLayoutManager(this)
+
+        val newNoteOpener = findViewById<Button>(R.id.new_note)
+        newNoteOpener.setOnClickListener {
+            val intent = Intent(this, CreateNoteActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

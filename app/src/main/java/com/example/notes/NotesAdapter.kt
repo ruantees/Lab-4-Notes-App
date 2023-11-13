@@ -6,19 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class Note(val title: String, val note: String) {
-    companion object {
-        private var lastNoteId = 0
-        fun createNotesList(numNotes: Int): ArrayList<Note> {
-            val notes = ArrayList<Note>()
-            for (i in 1..numNotes) {
-                notes.add(Note("title" + ++lastNoteId, "note$lastNoteId"))
-            }
-            return notes
-        }
-    }
-}
-
 class NotesAdapter(private val myNotes: List<Note>): RecyclerView.Adapter<NotesAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView = itemView.findViewById<TextView>(R.id.title)
