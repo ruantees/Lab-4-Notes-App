@@ -28,17 +28,17 @@ class CreateNoteActivity : AppCompatActivity() {
             else if (noteTextInputString.isEmpty()){
                 Toast.makeText(this, "Empty Note", Toast.LENGTH_SHORT).show()
             }
+            else {
+                val dbHelper = DatabaseHelper.getInstance(this)
+                val isNoteSaved = dbHelper.insertNote(titleInputString, noteTextInputString)
 
-            val dbHelper = DatabaseHelper.getInstance(this)
-            val isNoteSaved = dbHelper.insertNote(titleInputString, noteTextInputString)
-
-            if (isNoteSaved) {
-                Toast.makeText(this, "Note saved successfully!", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this, "Error while saving note!", Toast.LENGTH_SHORT).show()
+                if (isNoteSaved) {
+                    Toast.makeText(this, "Note saved successfully!", Toast.LENGTH_SHORT).show()
+                    finish()
+                } else {
+                    Toast.makeText(this, "Error while saving note!", Toast.LENGTH_SHORT).show()
+                }
             }
-
-            finish()
         }
     }
 }

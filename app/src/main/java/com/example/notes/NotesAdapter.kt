@@ -1,21 +1,36 @@
 package com.example.notes
 
+import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class NotesAdapter(private val myNotes: List<Note>): RecyclerView.Adapter<NotesAdapter.ViewHolder>() {
+class NotesAdapter(private val context: Context, val myNotes: List<Note>): RecyclerView.Adapter<NotesAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val titleTextView = itemView.findViewById<TextView>(R.id.title)
-        val noteTextView = itemView.findViewById<TextView>(R.id.note)
+        val titleTextView: TextView = itemView.findViewById(R.id.title)
+        val noteTextView: TextView = itemView.findViewById(R.id.note)
+        val checkBox: CheckBox? = itemView.findViewById(R.id.my_checkbox)
+
+        fun isChecked(): Boolean {
+            return checkBox?.isChecked == true
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesAdapter.ViewHolder {
         val context = parent.context
         val inflater = LayoutInflater.from(context)
-        val noteView = inflater.inflate(R.layout.note_row, parent, false)
+
+        val layoutId = when (context) {
+            is MainActivity -> R.layout.note_row
+            is DeleteNotesActivity -> R.layout.delete_note_row
+            else -> throw IllegalArgumentException("Invalid context")
+        }
+
+        val noteView = inflater.inflate(layoutId, parent, false)
         return ViewHolder(noteView)
     }
 

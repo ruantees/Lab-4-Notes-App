@@ -5,7 +5,6 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import java.util.Date
 
 class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, "Notes.db", null, 1) {
 
@@ -26,16 +25,6 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, "Notes.db", n
         onCreate(db)
     }
 
-    fun insertNote(title: String, note: String): Boolean {
-        val db = this.writableDatabase
-        val contentValues = ContentValues()
-        contentValues.put("title", title)
-        contentValues.put("note", note)
-        val result = db.insert("Notes", null, contentValues)
-        db.close()
-        return result != -1L
-    }
-
     @SuppressLint("Range")
     fun getAllNotes(): ArrayList<Note> {
         val noteList = ArrayList<Note>()
@@ -48,9 +37,8 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, "Notes.db", n
                 val id = cursor.getString(cursor.getColumnIndex("title"))
                 val title = cursor.getString(cursor.getColumnIndex("title"))
                 val note = cursor.getString(cursor.getColumnIndex("note"))
-                val creationDate = Date()
 
-                noteList.add(Note(id, title, note, creationDate))
+                noteList.add(Note(id, title, note))
             } while (cursor.moveToNext())
         }
 
@@ -58,5 +46,24 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, "Notes.db", n
         db.close()
 
         return noteList
+    }
+
+    fun insertNote(title: String, note: String): Boolean {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put("title", title)
+        contentValues.put("note", note)
+        val result = db.insert("Notes", null, contentValues)
+        db.close()
+        return result != -1L
+    }
+
+    fun deleteNote(title: String): Boolean {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put("title", title)
+        val result = db.delete("Notes", "title = ?", arrayOf(title))
+        db.close()
+        return result != -1
     }
 }
