@@ -7,4 +7,5 @@
     <string name="note_text">Note Text</string>
     <string name="title_hint">Title</string>
     <string name="note_text_hint">Note Text</string>
+    <string name="notes">Notes</string>
 </resources>

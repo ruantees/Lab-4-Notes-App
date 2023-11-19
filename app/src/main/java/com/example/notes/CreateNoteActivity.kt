@@ -1,7 +1,6 @@
 package com.example.notes
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -19,8 +18,6 @@ class CreateNoteActivity : AppCompatActivity() {
         saveNoteButton.setOnClickListener {
             val titleInputString = titleInput.text.toString()
             val noteTextInputString = noteTextInput.text.toString()
-            val currentTime = System.currentTimeMillis().toString()
-            Log.d("time", currentTime)
 
             if (titleInputString.isEmpty()){
                 Toast.makeText(this, "Empty Title", Toast.LENGTH_SHORT).show()
