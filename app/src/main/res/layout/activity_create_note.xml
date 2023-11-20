@@ -7,27 +7,44 @@
 
     <include layout="@layout/header"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/title_input"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:hint="@string/title_hint" />
+        android:layout_margin="20dp"
+        android:padding="20dp"
+        android:background="@drawable/text_border"
+        android:hint="@string/title_hint"
+        android:textSize="24sp"
+        android:inputType="textAutoCorrect"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/note_text_input"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
-        android:hint="@string/note_text_hint" />
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="20dp"
+        android:padding="20dp"
+        android:background="@drawable/text_border"
+        android:hint="@string/note_text_hint"
+        android:textSize="24sp"
+        android:gravity="start"
+        android:inputType="textAutoCorrect|textMultiLine"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/save_note"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/save_note"/>
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="30dp"
+        android:text="@string/save_note"
+        android:textSize="24sp"/>
 
 </LinearLayout>

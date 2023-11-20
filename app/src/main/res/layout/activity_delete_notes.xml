@@ -7,7 +7,7 @@
 
     <include layout="@layout/header"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="wrap_content" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_notes_delete"
@@ -15,16 +15,16 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:padding="10dp"
-        android:textSize="36sp"/>
+        android:layout_margin="20dp"/>
 
     <Button
         android:id="@+id/delete_note"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:paddingVertical="5dp"
-        android:paddingHorizontal="25dp"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="30dp"
         android:text="@string/delete_note"
-        android:textSize="18sp" />
+        android:textSize="24sp" />
 
 </LinearLayout>
